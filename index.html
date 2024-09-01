@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- Linking external css -->
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <section class="master">
+        <h1 class="heading">Video Transcription</h1>
+        <form action="/php_scripts/script.php" method="post" enctype="multipart/form-data">
+
+            {% if display== False: %}
+            <section class="small-master">
+                <label for="video" class="txt">Select a video:</label>
+                <input class="bttn" type="file" name="video" id="video" accept="video/*" required>
+                <br><br>
+                <label for="select" class="txt">Select the transcript language:</label>
+                <select id="languages" name="languages">
+                    <option disabled selected hidden>Language...</option>
+                    <option value="bn">Bengali</option>
+                    <option value="en">English</option>
+                    <option value="gu">Gujarati</option>
+                    <option value="hi">Hindi</option>
+                    <option value="kn">Kannada</option>
+                    <option value="ml">Malayalam</option>
+                    <option value="mr">Marathi</option>
+                    <option value="or">Oriya</option>
+                    <option value="pa">Punjabi</option>
+                    <option value="ta">Tamil</option>
+                    <option value="te">Telugu</option>
+                    <option value="ur">Urdu</option>
+                </select>
+                <input type="submit" value="Upload" id="up-bttn">
+            </section>
+
+            {% elif display== True: %}
+            <section class="small-masters">
+                <h1 class="file-name">Video</h1>
+                <video width="640" height="360" controls class="vid">
+                    <source src="/static/uploaded_video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+
+                <h1 class="file-name">Transcript</h1>
+                <section id="inner-master">
+                    <p id="transcript">{{transcript}}</p>
+                </section>
+
+            </section>
+            {% endif %}
+            
+        </form>
+    </section>
+</body>
+</html>
